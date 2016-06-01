@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="col-md-4">
+    <form id="messageForm">
+      <div class="row">
+        <label for="author">Author</label>
+        <select ng-model="author">
+          <option value="Derrick Mull">Derrick Mull</option>
+          <option value="Wesley Mull">Wesley Mull</option>
+        </select>
+      </div>
+
+    </form>
+    <div class="row">
+      <textarea ng-model="messageContent" rows="4" cols="55" name="message" form="messageForm" placeholder="Enter text here..."></textarea>
+    </div>
+    <div class="row">
+
+        <div class="btn btn-info pull-right" ng-click="submitMessage()">Submit</div>
+
+    </div>
+  </div>
+
+  <div class="col-md-offset-2 col-md-6">
+    <h4>Message By: {{ author }}</h4>
+    <p>{{ messageContent }}</p>
+  </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "Inventory Systems",
+  "description": "Web based purchase, sales, and reporting system",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Derrick Mull"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "^3.3.6"
+  }
+}

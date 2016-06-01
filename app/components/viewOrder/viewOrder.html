@@ -1,0 +1,42 @@
+<div class="container">
+  <div id="order-to-print">
+    <div class="orderHead row">
+      <div class="egs-order-head col-md-12">
+        <h3 class="pull-right">{{ order.type }} #: {{ order.id }} </h3>
+
+        <span class="orderCustomer">{{ order.customer }}</span><br />
+        <span class="orderDate">{{ order.dateTime | date:'medium'}}</span>
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="row" >
+      <table class="table table-striped">
+        <tr>
+          <th>Quantity</th>
+          <th>Description</th>
+          <th>Unit Price</th>
+          <th>Total</th>
+        </tr>
+        <tr ng-repeat="lineItem in order.orderContents">
+          <td>{{ lineItem.quantity }}</td>
+          <td>{{ lineItem.description }}</td>
+          <td>{{ lineItem.unit | currency }}</td>
+          <td>{{ lineItem.total | currency }}</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <span class="glyphicon glyphicon-remove"></span>
+    <span class="glyphicon glyphicon-edit"></span>
+    <a href="#/view-order/{{order._id.$oid}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+    <span class="pull-right"> <b>Total:</b> {{ order.orderGrandTotal | currency }}</span>
+  </div>
+<span class="glyphicon glyphicon-print pull-right" ng-click="printOrder()"> Print </span>
+</div>

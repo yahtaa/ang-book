@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Recent Orders</h3>
+
+      <div class="" >
+
+        <div class="orderHome" ng-repeat="order in orders | orderBy: '-dateTime'">
+          <div class="orderHead">
+            <span class="orderCustomer">{{ order.customer }} - </span>
+            <span class="orderDate pull-right">{{ order.dateTime | date:'medium'}}</span>
+            <span>{{ order.type }}</span>
+            <span> - Order ID: {{ order.id }}</span>
+          </div>
+
+
+
+          <div class="lineItemsHome" >
+            <table class="table table-striped">
+              <tr>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+              </tr>
+              <tr ng-repeat="lineItem in order.orderContents">
+                <td>{{ lineItem.quantity }}</td>
+                <td>{{ lineItem.description }}</td>
+                <td>{{ lineItem.unit | currency }}</td>
+                <td>{{ lineItem.total | currency }}</td>
+              </tr>
+
+            </table>
+
+          </div>
+
+          <span class="glyphicon glyphicon-remove"></span>
+          <span class="glyphicon glyphicon-edit"></span>
+          <a href="#/view-order/{{order._id.$oid}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+          <span>Payment: {{ order.orderPaymentType | uppercase }} {{ order.checkNumber }}</span>
+          <span class="pull-right"><b>Total:</b> {{ order.orderGrandTotal | currency }}</span>
+
+        </div>
+      </div>
+
+      <!-- <table  >
+        <tr>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Order Type</th>
+          <th>Order Total</th>
+          <th>Delete</th>
+          <th>Edit</th>
+          <th>View</th>
+        </tr>
+        <tr ng-repeat="order in orders | orderBy: '-dateTime'">
+          <td>{{ order.dateTime | date:'medium'}}</td>
+          <td>{{ order.customer }}</td>
+          <td>{{ order.type }}</td>
+          <div class="" ng-repeat="lineItem in item.orderContents">
+          {{ lineItem.quantity }}
+          </div>
+          <td>{{ order.orderGrandTotal | currency }}</td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td><span class="glyphicon glyphicon-edit"></span></td>
+          <td><span class="glyphicon glyphicon-eye-open"></span></td>
+        </tr>
+      </table> -->
+    </div>
+    <div class="col-sm-6">
+      <h3>Messages</h3>
+      <article ng-repeat="message in messages | orderBy: '-dateTime' " class="well">
+
+        <p >{{ message.contents }}</p>
+        <div class="pull-right">
+          <span>By: {{ message.author }}</span> -
+          <span>{{message.dateTime | date:"medium"}}<span>
+        </div>
+      </article>
+    </div>
+  </div>
+
+
+<hr>
+
+
+
+</div>

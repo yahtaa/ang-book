@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="item-add">
+<form class="form">
+
+
+  <div class="row">
+    <input type="radio" name="purchase" value="Purchase Order" ng-model="type" checked="true">
+    <label for="purchase">Purchase</label>
+    <input type="radio" name="sale" value="Invoice" ng-model="type">
+    <label for="sale">Sale</label>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <label for="customer"><h4>Customer</h4></label>
+      <input class="form-control" type="text" name="customer" value="" ng-model="customer" ng-required="required" />
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <h1>Add Line Item</h1>
+    <div class="col-md-2">
+      <label for="quantity">Quantity</label>
+      <input class="form-control" type="number" name="quantity" value="" placeholder="0" ng-model="quantity" />
+    </div>
+    <!-- <div class="col-md-2">
+      <label for="itemsList">Item</label>
+      <select class="form-control"
+          chosen
+          data-placeholder-text-single="'Choose an item'"
+          no-results-text="'Could not find your item :('"
+          ng-model="selected"
+          ng-options="i.label as i.id for i in itemsList">
+      <option value=""></option>
+    </select>
+       <label for="itemList">Item</label>
+      <select class="form-control" chosen multiple id="states">
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+      </select>
+  </div> -->
+    <div class="col-md-3">
+      <label for="description">Description</label>
+
+      <!-- <div class="" value="{{selected}}">
+        {{selected}}
+      </div> -->
+      <input class="form-control" type="text" name="description" value="" ng-model="description" />
+    </div>
+    <div class="col-md-2">
+      <label for="unit">Unit Price</label>
+      <input class="form-control" type="number" name="unit" value="" placeholder="0" ng-model="unit" />
+    </div>
+    <div class="col-md-2">
+      <label for="total">Total</label>
+      <div class="form-control"  placeholder="0" ng-model="total">{{ quantity * unit | currency }}</div>
+    </div>
+    <div class="col-md-2">
+      <label for="total">  </label>
+      <button type="submit" ng-click="addItemToOrder()" class="btn btn-default btn-info form-control">
+
+        <span>Add Item</span>  {{ itemTypes }}
+      </button>
+  </div>
+
+  </div>
+  </form>
+</div>
+
+
+<hr />
+<form class="" id="order-to-email" name="orderform">
+<div id="order-to-print" class="order">
+  <h1>{{type}}</h1>
+  <h2>{{customer}}</h2>
+  <span>Order ID: {{ orders.length + 1}}</span>
+  <table style="width:100%">
+    <tbody>
+    <tr>
+      <th>Quantity</th>
+      <th>Description</th>
+      <th>Unit</th>
+      <th>Total</th>
+    </tr>
+    <div >
+      <tr ng-repeat="item in items">
+        <td>{{item.quantity}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.unit | currency}}</td>
+        <td>{{item.total | currency}}</td>
+        <td><span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteItem(item, $index)"></span></td>
+      </tr>
+    </div>
+
+
+  </tbody>
+</table>
+
+</div>
+
+<div class="payments">
+  <h4>Payment Type</h4>
+  <select class="" ng-model="paymentType" name="paymentType">
+    <option value="cash" >Cash</option>
+    <option value="check">Check</option>
+    <option value="trade">Trade</option>
+  </select>
+  <div class="" ng-show="paymentType=='check'">
+    <span>Check #:</span><input type="text" name="check-number" value=""  ng-model="checkNumber">
+  </div>
+
+</div>
+<input type="email" name="customerEmail" ng-model="customerEmail">
+<div class="order-controls pull-right">
+  <div class="order-total">
+    <h3>Total: {{ orderTotal() | currency}}</h3>
+  </div>
+
+
+ </form>
+
+  <span class="glyphicon glyphicon-send" ng-click="sendOrderEmail()"> E-Mail |</span>
+  <span class="glyphicon glyphicon-save" ng-click="saveCompletedOrder()"> Save |</span>
+</div>
+
+
+</div>

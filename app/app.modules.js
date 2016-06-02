@@ -4,7 +4,6 @@ angular.module("metalsSystemApp",
   [
     'ngRoute',
     'ngResource',
-    'ngAnimate',
     'localytics.directives'
   ])
 

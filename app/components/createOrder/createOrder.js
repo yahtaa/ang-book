@@ -42,15 +42,15 @@ angular.module("metalsSystemApp")
     return total;
   };
 
-  // SAVE CURRENT ORDER TO DATABASE
+
 
   Orders.query(function(data) {
     $scope.orders = data;
   });
-
-
-  var buildOrder = function() {
-
+  
+  // SAVE CURRENT ORDER TO DATABASE
+  $scope.saveCompletedOrder = function(){
+    $scope.order = [];
     var order = {
       "id": ($scope.orders.length + 1),
       "dateTime": Date.now(),
@@ -64,13 +64,7 @@ angular.module("metalsSystemApp")
 
     };
     $scope.order.push(order);
-
-  };
-
-  $scope.saveCompletedOrder = function(){
-    $scope.order = [];
-    buildOrder();
-    Orders.save(order);
+    Orders.save($scope.order);
     console.log("Saved");
     alert('Order Saved');
     var reloadOrder = function(){
@@ -79,7 +73,3 @@ angular.module("metalsSystemApp")
     reloadOrder();
   };
 })
-
-$scope.sendOrderEmail = function(){
-  //SEND ORDER AS EMAIL
-}

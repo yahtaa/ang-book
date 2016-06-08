@@ -2,7 +2,7 @@
 
 angular.module("metalsSystemApp")
 
-.controller("createOrderCtrl", function($scope, $http, Orders, $route, $location, ItemList){
+.controller("createOrderCtrl", function($scope, $http, Orders, $route, $location){
 
   //CREATE LINE ITEM
   $scope.items = [];
@@ -25,9 +25,9 @@ angular.module("metalsSystemApp")
 
   };
 
-  ItemList.query(function(data) {
-    $scope.itemsList = data;
-  });
+  // ItemList.query(function(data) {
+  //   $scope.itemsList = data;
+  // });
   //REMOVE LINE ITEM FROM ORDER
   $scope.deleteItem = function(item, $index) {
     $scope.items.splice($index, 1);
@@ -47,7 +47,7 @@ angular.module("metalsSystemApp")
   Orders.query(function(data) {
     $scope.orders = data;
   });
-  
+
   // SAVE CURRENT ORDER TO DATABASE
   $scope.saveCompletedOrder = function(){
     $scope.order = [];
@@ -72,4 +72,15 @@ angular.module("metalsSystemApp")
     };
     reloadOrder();
   };
+
+  $scope.sendOrderEmail = function(){
+      $.ajax({
+         type: 'POST',
+         url: 'assets/mailer/sendOrder.php',
+         data: {
+         'content': $('#order-to-print').html()
+         }
+       });
+       console.log("EMAIL!");
+  }
 })

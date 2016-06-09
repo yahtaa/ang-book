@@ -33,9 +33,9 @@
 
     </div>
 
-    <span class="glyphicon glyphicon-remove"></span>
+    <span class="glyphicon glyphicon-remove" ng-click="deleteOrder()"></span>
     <span class="glyphicon glyphicon-edit"></span>
-    <a href="#/view-order/{{order._id.$oid}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+    
     <span class="pull-right"> <b>Total:</b> {{ order.orderGrandTotal | currency }}</span>
   </div>
 <span class="glyphicon glyphicon-print pull-right" ng-click="printOrder()"> Print </span>
